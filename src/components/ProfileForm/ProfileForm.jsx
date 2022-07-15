@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function ProfileForm() {
   const [firstName, setFirstName] = useState('');
@@ -10,12 +11,14 @@ function ProfileForm() {
   const [gender, setGender] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
+  
 
   const makeProfile = (event) => {
     event.preventDefault();
 
     dispatch({
-      type: 'PROFILE',
+      type: 'CREATE_PROFILE',
       payload: {
         first_name: firstName,
         last_name: lastName,
@@ -25,6 +28,7 @@ function ProfileForm() {
         gender: gender
       },
     });
+    history.push('/home')
   }; // end makeProfile
 
   return (

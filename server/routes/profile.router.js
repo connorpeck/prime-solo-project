@@ -6,6 +6,15 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
+  console.log(req.query);
+  const queryText = `SELECT * FROM "profile"`;
+  pool.query(queryText)
+  .then(result => {
+    res.send(result.rows);
+  }).catch(err => {
+    console.log('err get profiles', err);
+    res.sendStatus(500)
+  })
   // GET route code here
 });
 
