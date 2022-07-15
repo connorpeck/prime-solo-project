@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Profile from '../Profile/Profile';
+import Maps from '../Maps/Maps';
 
 import './App.css';
 
@@ -47,6 +48,14 @@ function App() {
             path="/about"
           >
             <AboutPage />
+          </Route>
+
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/maps"
+          >
+            <Maps />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -108,6 +117,20 @@ function App() {
           <Route
             exact
             path="/home"
+          >
+            {user.id ?
+              // If the user is already logged in, 
+              // redirect them to the /user page
+              <Redirect to="/user" />
+              :
+              // Otherwise, show the Landing page
+              <LandingPage />
+            }
+          </Route>
+
+          <Route
+            exact
+            path="/maps"
           >
             {user.id ?
               // If the user is already logged in, 
