@@ -11,18 +11,23 @@ function* saveProfile(action) {
   }
 } //end saveprofile
 
-function* fetchProfile() {
+
+
+
+function* fetchProfile(action){
+  console.log('in fetchProfile', action);
   try {
-    const response = yield axios.get('/api/profile');
-    yield put({ type: 'GET_PROFILE', payload: response.data });
-  } catch (error) {
-    console.log('Profile get request failed', error);
+      const response = yield axios.get('/api/profile' , action.payload );
+      console.log('SET_PROFILE DATA IN SAGA', response.data, Array.isArray(response.data) );
+      yield put ({ type: 'SET_PROFILE', payload: response.data });
+  } catch (err){
+      console.log('errr in get all profile', err);
   }
 }
 
 function* profileSaga() {
-  yield takeLatest('CREATE_PROFILE', saveProfile);
-  yield takeLatest('PROFILE', fetchProfile);
+  yield takeLatest('SET_PROFILE', saveProfile);
+  yield takeLatest('FETCH_PROFILE', fetchProfile);
 }
 
 export default profileSaga;

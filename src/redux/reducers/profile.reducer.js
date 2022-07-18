@@ -1,6 +1,6 @@
 const profileReducer = (state = {}, action) => {
   switch (action.type) {
-    case 'PROFILE':
+    case 'SET_PROFILE':
       return action.payload;
     case 'UNSET_PROFILE':
       return {};

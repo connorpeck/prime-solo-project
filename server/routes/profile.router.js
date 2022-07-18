@@ -7,10 +7,11 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   console.log(req.query);
-  const queryText = `SELECT * FROM "profile"`;
-  pool.query(queryText)
+  const query = `SELECT * FROM "profile" WHERE id=3`;
+  pool.query(query)
   .then(result => {
-    res.send(result.rows);
+    console.log('hgfkghfkghkhjglkjhb', Array.isArray(result.rows));
+    res.send(result.rows[0]);
   }).catch(err => {
     console.log('err get profiles', err);
     res.sendStatus(500)
