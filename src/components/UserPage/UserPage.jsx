@@ -17,10 +17,6 @@ function UserPage() {
     // dispatch({ type: "GET_PROFILE"});
     console.log('profile object', profile);
   }, []);
-
-  const goToProfile = (event) => {
-    history.push('/profile');
-  };
   
   return (
     <div className="container">
@@ -28,7 +24,7 @@ function UserPage() {
       <h2>Welcome, {profile.first_name}</h2>
       <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" />
-      <button onClick={goToProfile}>Profile</button>
+      
       
       
     </div>

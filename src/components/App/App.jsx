@@ -21,7 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Profile from '../Profile/Profile';
 import Maps from '../Maps/Maps';
-
+import AddCourt from '../AddCourt/AddCourt';
 import './App.css';
 
 function App() {
@@ -84,6 +84,14 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/addCourt"
+          >
+            <AddCourt />
           </ProtectedRoute>
 
           <Route

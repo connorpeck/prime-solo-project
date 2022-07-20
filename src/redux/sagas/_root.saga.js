@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import profileSaga from './profile.saga';
+import geolocationSaga from './geolocation.saga';
 // import profileSaga from './profile.saga';
 
 
@@ -19,5 +20,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     profileSaga(),
+    geolocationSaga()
   ]);
 }

@@ -18,7 +18,10 @@ function Nav() {
           // If there's no user, show login/registration links
           <Link className="navLink" to="/login">
             Login / Register
-          </Link>
+          </Link>,
+          <Link className="navLink" to="/maps">
+          Maps
+        </Link>
         )}
 
         {/* If a user is logged in, show these links */}
@@ -31,14 +34,17 @@ function Nav() {
             <Link className="navLink" to="/maps">
               Maps
             </Link>
+            <Link className="navLink" to="/profile">
+              Profile
+            </Link>
+            <Link className="navLink" to="/addCourt">
+              Add Court
+            </Link>
+
 
             <Link className="navLink" to="/info">
               Info Page
             </Link>
-            <Link className="navLink" to="/profile">
-              Profile
-            </Link>
-
             <LogOutButton className="navLink" />
           </>
         )}

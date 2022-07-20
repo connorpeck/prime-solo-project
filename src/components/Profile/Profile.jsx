@@ -2,6 +2,15 @@ import React, { useState } from 'react';
 import {useEffect} from "react"
 import {useDispatch, useSelector} from 'react-redux';
 import './Profile.css';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+
 
 
 
@@ -14,7 +23,10 @@ function Profile() {
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
   const profile = useSelector((store)=> store.profile);
-  const user = useSelector((store)=> store.user)
+  const user = useSelector((store)=> store.user);
+  const geolocation = useSelector((store)=> store.geolocation);
+  const address = useSelector((store)=> store.address);
+
   // const [heading, setHeading] = useState('Profile');
 
   
@@ -29,27 +41,42 @@ function Profile() {
 
     <div>
 <h1>Profile</h1>
-   <table className='center'>
-     <tr>First Name
-       <td>{profile.first_name}</td>
-     </tr>
-     <tr>Last Name
-       <td>{profile.last_name}</td>
-     </tr>
-     <tr>Bio
-       <td>{profile.bio}</td>
-     </tr>
-     <tr>Hand
-       <td>{profile.hand}</td>
-     </tr>
-     <tr>Game Type
-       <td>{profile.game_type}</td>
-     </tr>
-     <tr>Gender
-       <td>{profile.gender}</td>
-     </tr>
+
+
+
+
+<TableContainer>
+   <Table className='center'>
+  <TableHead> 
+    <TableRow align='center'>
+      First Name 
+      <TableCell align='center'>{profile.first_name}</TableCell>
+    </TableRow>
+    <TableRow align='center'>
+      Last Name 
+      <TableCell align='center'>{profile.last_name}</TableCell>
+    </TableRow>
+    <TableRow align='center'>
+      Bio
+      <TableCell align='center'>{profile.bio}</TableCell>
+    </TableRow>
+    <TableRow align='center'>
+      Hand
+      <TableCell align='center'>{profile.hand}</TableCell>
+    </TableRow>
+    <TableRow align='center'>
+      Game Type
+      <TableCell align='center'>{profile.game_type}</TableCell>
+    </TableRow>
+    <TableRow align='center'>
+      Gender
+      <TableCell align='center'>{profile.gender}</TableCell>
+    </TableRow>
+  </TableHead>
      
-   </table>
+   </Table>
+   </TableContainer>
+   
       
       
   

@@ -20,7 +20,7 @@ const center = {
 
 function Maps() {
   const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
+    id: '28012bfa74f851d9',
     googleMapsApiKey: "AIzaSyBfq3NpI06FkLbrezLE42LwKtxP3yEQHFU"
   })
 
@@ -28,6 +28,7 @@ function Maps() {
 
 
   return isLoaded ? (
+    
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -35,7 +36,6 @@ function Maps() {
         marker={{lat: 44.9537,
           lng:  -93.091301}}
       >
-   
         <></>
       </GoogleMap>
   ) : <></>
