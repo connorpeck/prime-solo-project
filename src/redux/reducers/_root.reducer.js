@@ -14,7 +14,8 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, 
   profile,
-  geolocation,// will have an id and username if someone is logged in
+  geolocation,
+  address// will have an id and username if someone is logged in
 });
 
 export default rootReducer;

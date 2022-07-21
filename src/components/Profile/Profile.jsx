@@ -25,7 +25,7 @@ function Profile() {
   const profile = useSelector((store)=> store.profile);
   const user = useSelector((store)=> store.user);
   const geolocation = useSelector((store)=> store.geolocation);
-  const address = useSelector((store)=> store.address);
+
 
   // const [heading, setHeading] = useState('Profile');
 
@@ -41,6 +41,7 @@ function Profile() {
 
     <div>
 <h1>Profile</h1>
+
 
 
 

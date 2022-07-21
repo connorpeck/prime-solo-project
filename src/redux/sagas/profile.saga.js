@@ -18,7 +18,7 @@ function* fetchProfile(action){
   console.log('in fetchProfile', action);
   try {
       const response = yield axios.get('/api/profile' , action.payload );
-      console.log('SET_PROFILE DATA IN SAGA', response.data, Array.isArray(response.data) );
+      console.log('SET_PROFILE DATA IN SAGA', response.data );
       yield put ({ type: 'SET_PROFILE', payload: response.data });
   } catch (err){
       console.log('errr in get all profile', err);
@@ -26,7 +26,7 @@ function* fetchProfile(action){
 }
 
 function* profileSaga() {
-  yield takeLatest('SET_PROFILE', saveProfile);
+  yield takeLatest('CREATE_PROFILE', saveProfile);
   yield takeLatest('FETCH_PROFILE', fetchProfile);
 }
 

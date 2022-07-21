@@ -19,18 +19,33 @@ function AddCourt() {
   // const profile = useSelector((store)=> store.profile);
   // const user = useSelector((store)=> store.user);
   const geolocation = useSelector((store)=> store.geolocation);
+  const latlng = {
+    lat:geolocation.lat,
+    lng: geolocation.lng,
+    address: address
+  }
+  // const lat = geolocation.lat;
+  // const lng = geolocation.lng;
 
   // const [heading, setHeading] = useState('Profile');
 
   
   useEffect(() => {
-    dispatch({type:'FETCH_LOCATION', payload: address });
+    dispatch({type:'FETCH_LOCATION'});
+    
   }, []);
 
-  function gatherAddress () {
-    dispatch({type:'SET_ADDRESS', payload: address });
+
+
+
+  function storeAddress () {
+    dispatch({type:'SET_ADDRESS', payload: latlng });
+    dispatch({type:'STORE_ADDRESS', payload: latlng})
+    console.log('store address geolocation', latlng);
 console.log('set address', address);
   }
+
+
 
   
 
@@ -41,9 +56,11 @@ console.log('set address', address);
 <h2>Lat: {geolocation.lat}, Lng: {geolocation.lng}</h2>
 
 
-<form>
+
+
+<form className='addressForm' onSubmit={storeAddress}>
   <input onChange={(event) => setAddress(event.target.value)} type="text" placeholder='Address' />
-  <button onClick={gatherAddress}> Add Court</button>
+  <input className='btn' type='submit' name='submit' value='Add Court'/>
 </form>
 
 
