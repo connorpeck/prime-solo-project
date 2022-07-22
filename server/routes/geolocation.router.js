@@ -14,9 +14,9 @@ router.get('/', (req, res) => {
  */
 router.post('/geolocation', (req, res) => {
   // POST route code here
-  const lat = req.body.lat;
-  const lng = req.body.lng;
-  const address= req.body.address;
+  const lat = req.body.latLng.lat;
+  const lng = req.body.latLng.lng;
+  const address= req.body.formattedAddress;
   const queryText = `INSERT INTO "geolocation" (lat, lng, address)
   VALUES ($1, $2, $3)`;
   pool.query( queryText, [lat, lng, address])

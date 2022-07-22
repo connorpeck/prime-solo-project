@@ -1,7 +1,7 @@
-const geolocationReducer = (state = {}, action) => {
+const geolocationReducer = (state = [], action) => {
     switch (action.type) {
-      case 'SET_LOCATION':
-        return action.payload;
+      case 'ADD_LOCATION':
+        return [...state, action.payload];
       case 'UNSET_PROFILE':
         return {};
       default:

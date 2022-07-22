@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useEffect} from "react"
 import {useDispatch, useSelector} from 'react-redux';
 import './AddCourt.css';
+import Maps from '../Maps/Maps'
 
 
 
@@ -15,34 +16,39 @@ function AddCourt() {
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
   const [address, setAddress] = useState('');
+
+  const [markers, setMarkers]= useState([]);
+
   const dispatch = useDispatch();
   // const profile = useSelector((store)=> store.profile);
   // const user = useSelector((store)=> store.user);
   const geolocation = useSelector((store)=> store.geolocation);
-  const latlng = {
-    lat:geolocation.lat,
-    lng: geolocation.lng,
-    address: address
-  }
+  // const latlng = {
+  //   lat:geolocation.lat,
+  //   lng: geolocation.lng,
+  //   address: address
+  // }
   // const lat = geolocation.lat;
   // const lng = geolocation.lng;
 
   // const [heading, setHeading] = useState('Profile');
 
   
-  useEffect(() => {
-    dispatch({type:'FETCH_LOCATION'});
+  // useEffect(() => {
+  //   dispatch({type:'FETCH_LOCATION'});
     
-  }, []);
+  // }, []);
 
 
 
 
   function storeAddress () {
-    dispatch({type:'SET_ADDRESS', payload: latlng });
-    dispatch({type:'STORE_ADDRESS', payload: latlng})
-    console.log('store address geolocation', latlng);
-console.log('set address', address);
+    dispatch({type:'SET_ADDRESS', payload: address });
+    // dispatch({type:'STORE_ADDRESS', payload: latlng})
+//     console.log('store address geolocation', latlng);
+// console.log('set address', address);
+
+
   }
 
 
@@ -52,8 +58,14 @@ console.log('set address', address);
   return (
 
     <div>
+      <p>{JSON.stringify(geolocation)}</p>
+      <div className='mapsDiv'>
+      <Maps />
+      </div>
+      <br />
+      <div className='addCourtDiv'>
 <h1>Add A Court</h1>
-<h2>Lat: {geolocation.lat}, Lng: {geolocation.lng}</h2>
+{/* <h2>Lat: {geolocation.lat}, Lng: {geolocation.lng}</h2> */}
 
 
 
@@ -61,7 +73,7 @@ console.log('set address', address);
 <form className='addressForm' onSubmit={storeAddress}>
   <input onChange={(event) => setAddress(event.target.value)} type="text" placeholder='Address' />
   <input className='btn' type='submit' name='submit' value='Add Court'/>
-</form>
+</form></div>
 
 
    
