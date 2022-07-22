@@ -34,10 +34,10 @@ function AddCourt() {
   // const [heading, setHeading] = useState('Profile');
 
   
-  // useEffect(() => {
-  //   dispatch({type:'FETCH_LOCATION'});
+  useEffect(() => {
+    dispatch({type:'FETCH_PINS'});
     
-  // }, []);
+  }, []);
 
 
 
@@ -58,12 +58,13 @@ function AddCourt() {
   return (
 
     <div>
-      <p>{JSON.stringify(geolocation)}</p>
+    
       <div className='mapsDiv'>
       <Maps />
       </div>
       <br />
       <div className='addCourtDiv'>
+<p>{JSON.stringify(geolocation)}</p>
 <h1>Add A Court</h1>
 {/* <h2>Lat: {geolocation.lat}, Lng: {geolocation.lng}</h2> */}
 

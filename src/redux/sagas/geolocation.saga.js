@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-function* fetchAndStoreGeoLocation(action){
+function* convertAndStoreGeoLocation(action){
   console.log('in fetchGeoLocation', action);
   try {
       const location = action.payload;
@@ -13,13 +13,12 @@ function* fetchAndStoreGeoLocation(action){
            key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
       }}, action.payload );
       console.log('SET_LOCATION DATA IN geolocationSaga SAGA', 
-      response.data.results[0].geometry.location,
-      response.data.results[0].formatted_address);
+      response.data.results[0].address_components[0].long_name);
       const newCourt = {
         latLng: response.data.results[0].geometry.location,
         formattedAddress:response.data.results[0].formatted_address
       }
-    
+    console.log('NEW COURT OBJ', newCourt);
       yield axios.post('/api/geolocation/geolocation', newCourt);
       yield put ({ type: 'ADD_LOCATION', payload: newCourt.latLng });
   } catch (err){
@@ -27,23 +26,25 @@ function* fetchAndStoreGeoLocation(action){
   }
 } // end fetchGeoLocation
 
-//fetch all geolocations (load all points from DB)
-function* fetchAllGeolocations(action){
-  console.log('in storeGeoLocation', action);
-  try {
-    //passes the geolocation info from payload to the server
-    
-  } 
-  catch(error) {
-    console.log('error saving geoLocation', error);
-  }
 
-} // end storeGeoLocation
+
+function* fetchAllGeolocations(action){
+  console.log('in fetchAllGeolocations', action);
+  try {
+      const response = yield axios.get('/api/geolocation' , action.payload );
+      console.log('SET_PINS DATA IN SAGA', response.data );
+      yield put ({ type: 'ADD_LOCATION', payload: response.data });
+  } catch (err){
+      console.log('errr in get all profile', err);
+  }
+}
 
 function* geolocationSaga() {
   // yield takeLatest('FETCH_LOCATION', fetchGeoLocation);
-  yield takeLatest('SET_ADDRESS', fetchAndStoreGeoLocation);
-  yield takeLatest('STORE_ADDRESS', fetchAllGeolocations);
+  yield takeLatest('SET_ADDRESS', convertAndStoreGeoLocation);
+  yield takeLatest('FETCH_PINS', fetchAllGeolocations);
 }
 
 export default geolocationSaga;
+
+

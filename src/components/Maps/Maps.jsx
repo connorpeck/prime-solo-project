@@ -4,10 +4,10 @@ import {
   GoogleMap,
   useJsApiLoader,
   Marker,
-  GoogleMapsReact,
   InfoWindow,
 } from "@react-google-maps/api";
 import { useDispatch, useSelector } from "react-redux";
+import ReviewForm from "../ReviewForm/ReviewForm";
 
 // import {GoogleMapsReact} from 'google-map-react'
 
@@ -24,7 +24,9 @@ function Maps() {
     lat: 44.9537,
     lng: -93.091301,
   };
-
+ function deleteCourt (){
+   console.log('in deleteCourt');
+ }
   // const marker = {
   //   lat:Number(geolocation.lat),
   //   lng: Number(geolocation.lng),
@@ -74,7 +76,12 @@ function Maps() {
       {
         selected ? (
           <InfoWindow position={{lat:selected.lat, lng:selected.lng}} onCloseClick={()=>{setSelected(null)}}>
-            <p>Test</p>
+            
+            <div>
+             <p>Tennis Court Test</p>
+             <ReviewForm />
+            <button onClick={deleteCourt}>Delete</button>
+            </div>
           </InfoWindow>
         )
         : null
