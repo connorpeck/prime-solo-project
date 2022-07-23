@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   console.log('req.query geolocation router', req.query);
-  const query = `SELECT (lat, lng) FROM "geolocation"`;
+  const query = `SELECT (lat),(lng) FROM "geolocation"`;
   pool.query(query)
   .then(result => {
     console.log('asdfasdfas results', result.rows);

@@ -13,7 +13,15 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 
 function Maps() {
   const geolocation = useSelector((store) => store.geolocation);
+  const dispatch = useDispatch();
+  const pins = useSelector((store)=> store.pins);
   const [selected, setSelected] = useState(null);
+
+  useEffect(() => {
+    dispatch({type:'FETCH_PINS'});
+  }, []);
+
+  
 
   const containerStyle = {
     width: "100%",
@@ -61,6 +69,7 @@ function Maps() {
   });
 
   return isLoaded ? (
+    <div>
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
@@ -68,16 +77,17 @@ function Maps() {
 
       // id={c8acd79f4ac60dee}
     >
-      {geolocation.map((marker) => (
+      {pins.map((marker) => (
         <Marker onClick={()=>{setSelected(null);
           setSelected(marker);}}
-        position={marker}></Marker>
+        position={{lat:Number(marker.lat), lng:Number(marker.lng)}}></Marker>
       ))}
       {
         selected ? (
-          <InfoWindow position={{lat:selected.lat, lng:selected.lng}} onCloseClick={()=>{setSelected(null)}}>
+          <InfoWindow position={{lat:Number(selected.lat), lng:Number(selected.lng)}} onCloseClick={()=>{setSelected(null)}}>
             
             <div>
+            
              <p>Tennis Court Test</p>
              <ReviewForm />
             <button onClick={deleteCourt}>Delete</button>
@@ -88,6 +98,13 @@ function Maps() {
       }
       <></>
     </GoogleMap>
+
+      {/* <p>
+                {JSON.stringify(selected)}
+              </p> */}
+    
+    </div>
+    
   ) : (
     <>LOADING</>
   );

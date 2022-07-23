@@ -16,11 +16,15 @@ function ReviewForm(props) {
     review: 'What a lovely court',
     rating: '5 Stars'
   }
+
+  function addReview () {
+    console.log('in add review');
+  }
   return (
     <div>
       
       <h2>Court Name: {review.courtName}</h2>
-      <h2>Review: <input></input></h2>
+      <h2>Review: <input></input><button onClick={addReview}>Add Review</button></h2> 
       <h2>Rating: {review.rating}</h2>
     </div>
   );

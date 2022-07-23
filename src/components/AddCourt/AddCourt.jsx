@@ -15,6 +15,8 @@ function AddCourt() {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
+  const profile = useSelector((store)=> store.profile);
+  const pins = useSelector((store) => store.pins);
   const [address, setAddress] = useState('');
 
   const [markers, setMarkers]= useState([]);
@@ -36,6 +38,7 @@ function AddCourt() {
   
   useEffect(() => {
     dispatch({type:'FETCH_PINS'});
+    dispatch({ type: "FETCH_PROFILE" });
     
   }, []);
 
@@ -58,13 +61,15 @@ function AddCourt() {
   return (
 
     <div>
+      <h1>{profile.first_name} {profile.last_name}'s Tennis Court List</h1>
+      {/* <h2>{JSON.stringify(pin)}</h2> */}
     
       <div className='mapsDiv'>
       <Maps />
       </div>
       <br />
       <div className='addCourtDiv'>
-<p>{JSON.stringify(geolocation)}</p>
+<p>{JSON.stringify(pins)}</p>
 <h1>Add A Court</h1>
 {/* <h2>Lat: {geolocation.lat}, Lng: {geolocation.lng}</h2> */}
 

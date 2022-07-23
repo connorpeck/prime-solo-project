@@ -33,6 +33,7 @@ function* fetchAllGeolocations(action){
   try {
       const response = yield axios.get('/api/geolocation' , action.payload );
       console.log('SET_PINS DATA IN SAGA', response.data );
+      yield put ({ type: 'SET_PINS', payload: response.data });
       yield put ({ type: 'ADD_LOCATION', payload: response.data });
   } catch (err){
       console.log('errr in get all profile', err);
