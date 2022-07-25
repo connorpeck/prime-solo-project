@@ -5,9 +5,10 @@ const router = express.Router();
 
 
 router.get('/:id', (req, res) => {
+  console.log(req.user.id);
   console.log('req.query in PROFILE ROUTER',req.params);
   const query = `SELECT * FROM "profile" JOIN "user" AS u ON profile.user_id= u.id WHERE profile.user_id= $1`;
-  const values = [req.params.id];
+  const values = [req.user.id];
   pool.query(query, values)
   .then(result => {
     console.log('hgfkghfkghkhjglkjhb', result.rows);

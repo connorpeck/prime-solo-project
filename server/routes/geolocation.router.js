@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   console.log('req.query geolocation router', req.query);
-  const query = `SELECT (lat),(lng) FROM "geolocation"`;
+  const query = `SELECT * FROM "geolocation"`;
   pool.query(query)
   .then(result => {
     console.log('asdfasdfas results', result.rows);
@@ -26,11 +26,13 @@ router.post('/geolocation', (req, res) => {
   const lat = req.body.latLng.lat;
   const lng = req.body.latLng.lng;
   const address= req.body.formattedAddress;
+  const review = req.body.review;
+  const user_id = req.user.id;
   
 
-  const queryText = `INSERT INTO "geolocation" (lat, lng, address)
-  VALUES ($1, $2, $3)`;
-  pool.query( queryText, [lat, lng, address])
+  const queryText = `INSERT INTO "geolocation" (lat, lng, address, review, user_id)
+  VALUES ($1, $2, $3, $4, $5)`;
+  pool.query( queryText, [lat, lng, address,review, user_id])
   .then( () => res.sendStatus(201) )
   .catch((err) => {
     console.log('geolocation save failed', err);
@@ -40,11 +42,13 @@ router.post('/geolocation', (req, res) => {
 
 module.exports = router;
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
   
 
-  const queryText = `DELETE FROM "geolocation" WHERE geolocation.id = 3;`;
-  pool.query( queryText)
+  const queryText = `DELETE FROM "geolocation" WHERE id = $1;`;
+  console.log(req.params.id);
+  const value = [req.params.id]
+  pool.query( queryText, value)
   .then( () => res.sendStatus(200) )
   .catch((err) => {
     console.log('court delete failed', err);
@@ -54,9 +58,10 @@ router.delete('/', (req, res) => {
 
 router.put('/', (req, res)=>{
   console.log('update review', req.body);
-  const queryText = `UPDATE "geolocation" SET review = 'TEST REVIEW UPDATE' WHERE geolocation.id=2;`;
+  const queryText = `UPDATE "geolocation" SET review = 'TEST REVIEW UPDATE' WHERE user_id=$1;`;
+  const values = [req.user.id]
   // const values = [req.body]
-  pool.query(queryText)
+  pool.query(queryText, values)
   .then(() => res.sendStatus(200))
   .catch((err)=>{
     console.log('update review failed', err);

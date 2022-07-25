@@ -21,6 +21,7 @@ function Maps() {
 
   useEffect(() => {
     dispatch({type:'FETCH_PINS'});
+    console.log(pins);
     // console.log('COURT ID', courtID);
   }, []);
 
@@ -36,8 +37,9 @@ function Maps() {
     lng: -93.091301,
   };
  function deleteCourt (){
+   console.log(selected.id);
    console.log('in deleteCourt');
-   dispatch({type:'DELETE_COURT'});
+   dispatch({type:'DELETE_COURT', payload: selected.id});
 
  }
   // const marker = {
@@ -74,7 +76,10 @@ function Maps() {
   });
 
   return isLoaded ? (
+
+    
     <div>
+      
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
@@ -85,15 +90,18 @@ function Maps() {
       {pins.map((marker) => (
         <Marker onClick={()=>{setSelected(null);
           setSelected(marker);}}
-        position={{lat:Number(marker.lat), lng:Number(marker.lng)}}></Marker>
+        position={{lat:Number(marker.lat), lng:Number(marker.lng)}} key={marker.id}></Marker>
       ))}
       {
         selected ? (
-          <InfoWindow position={{lat:Number(selected.lat), lng:Number(selected.lng)}} onCloseClick={()=>{setSelected(null)}}>
+          <InfoWindow onClick={deleteCourt} position={{lat:Number(selected.lat), lng:Number(selected.lng)}} onCloseClick={()=>{setSelected(null)}}>
             
             <div>
             
              <p>Tennis Court Test</p>
+             <p>
+              
+             </p>
              <ReviewForm />
             <button onClick={deleteCourt}>Delete</button>
             </div>

@@ -20,7 +20,7 @@ function* convertAndStoreGeoLocation(action){
       }
     console.log('NEW COURT OBJ', newCourt);
       yield axios.post('/api/geolocation/geolocation', newCourt);
-      yield put ({ type: 'ADD_LOCATION', payload: newCourt.latLng });
+      yield put ({ type: 'ADD_LOCATION', payload: newCourt.latLng});
       yield put({type:'FETCH_PINS'});
   } catch (err){
       console.log('errr in get location', err);
@@ -44,7 +44,7 @@ function* fetchAllGeolocations(action){
 function* deleteCourt(action){
   console.log('in delteCourt');
   try {
-   yield axios.delete('/api/geolocation')
+   yield axios.delete(`/api/geolocation/${action.payload}`)
    .then(response => {
      console.log('DELETE COURT RES', response);
    })
