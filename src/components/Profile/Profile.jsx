@@ -9,6 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useParams } from "react-router-dom";
 
 
 
@@ -21,6 +22,7 @@ function Profile() {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
+  const userID = useParams();
   const dispatch = useDispatch();
   const profile = useSelector((store)=> store.profile);
   const user = useSelector((store)=> store.user);
@@ -31,7 +33,8 @@ function Profile() {
 
   
   useEffect(() => {
-    dispatch({ type: "FETCH_PROFILE" });
+    dispatch({ type: "FETCH_PROFILE"});
+    dispatch({ type: "SEND_ID", payload:user.id});
     console.log('PROFILE TEST', profile);
   }, []);
 

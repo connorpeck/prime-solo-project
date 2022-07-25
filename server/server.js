@@ -26,7 +26,9 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/profile', profileRouter);
+// app.use('/api/id', profileRouter);
 app.use('/api/geolocation', geolocationRouter)
+app.use('/api/geolocation/delete', geolocationRouter)
 
 // Serve static files
 app.use(express.static('build'));

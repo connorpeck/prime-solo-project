@@ -10,6 +10,7 @@ function ProfileForm() {
   const [gameType, setGameType] = useState('');
   const [gender, setGender] = useState('');
   const errors = useSelector((store) => store.errors);
+  const user = useSelector((store)=> store.user);
   const dispatch = useDispatch();
   const history = useHistory();
   
@@ -25,7 +26,8 @@ function ProfileForm() {
         bio: bio,
         hand: hand,
         game_type: gameType,
-        gender: gender
+        gender: gender,
+        user_id: user.id
       },
     });
     history.push('/home')

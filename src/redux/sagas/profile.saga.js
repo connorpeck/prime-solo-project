@@ -15,7 +15,7 @@ function* saveProfile(action) {
 
 
 function* fetchProfile(action){
-  console.log('in fetchProfile', action);
+  console.log('in fetchProfile');
   try {
       const response = yield axios.get('/api/profile' , action.payload );
       console.log('SET_PROFILE DATA IN SAGA', response.data );
@@ -25,9 +25,22 @@ function* fetchProfile(action){
   }
 }
 
+
+
+// function* sendId() {
+//   try {
+   
+
+   
+//   } catch (error) {
+//     console.log('error with sending id', error);
+//   }
+// } //end saveprofile
+
 function* profileSaga() {
   yield takeLatest('CREATE_PROFILE', saveProfile);
   yield takeLatest('FETCH_PROFILE', fetchProfile);
+//   yield takeLatest('SEND_ID', sendId);
 }
 
 export default profileSaga;

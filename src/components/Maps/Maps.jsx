@@ -34,6 +34,8 @@ function Maps() {
   };
  function deleteCourt (){
    console.log('in deleteCourt');
+   dispatch({type:'DELETE_COURT'});
+
  }
   // const marker = {
   //   lat:Number(geolocation.lat),

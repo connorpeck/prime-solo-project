@@ -5,6 +5,7 @@ import profile from './profile.reducer';
 import geolocation from './geolocation.reducer';
 import address from './address.reducer';
 import pins from './pin.reducer';
+import id from './id.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   profile,
   geolocation,
   address,
-  pins// will have an id and username if someone is logged in
+  pins,
+  id// will have an id and username if someone is logged in
 });
 
 export default rootReducer;

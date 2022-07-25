@@ -40,10 +40,26 @@ function* fetchAllGeolocations(action){
   }
 }
 
+function* deleteCourt(action){
+  console.log('in delteCourt');
+  try {
+   yield axios.delete('/api/geolocation')
+   .then(response => {
+     console.log('DELETE COURT RES', response);
+   })
+  //  yield put({type:'FETCH_PINS'});
+
+  } catch (err){
+    console.log('error in delete court');
+  }
+
+}
+
 function* geolocationSaga() {
   // yield takeLatest('FETCH_LOCATION', fetchGeoLocation);
   yield takeLatest('SET_ADDRESS', convertAndStoreGeoLocation);
   yield takeLatest('FETCH_PINS', fetchAllGeolocations);
+  yield takeLatest('DELETE_COURT', deleteCourt);
 }
 
 export default geolocationSaga;

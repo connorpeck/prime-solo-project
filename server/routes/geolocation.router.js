@@ -39,3 +39,18 @@ router.post('/geolocation', (req, res) => {
 });
 
 module.exports = router;
+
+router.delete('/', (req, res) => {
+  
+
+  const queryText = `DELETE FROM "geolocation" WHERE geolocation.id = 1`;
+  pool.query( queryText)
+  .then( () => res.sendStatus(200) )
+  .catch((err) => {
+    console.log('court delete failed', err);
+    res.sendStatus(500);
+  });
+});
+
+module.exports = router;
+
