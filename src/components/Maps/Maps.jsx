@@ -100,11 +100,6 @@ function Maps() {
       }
       <></>
     </GoogleMap>
-
-      {/* <p>
-                {JSON.stringify(selected)}
-              </p> */}
-    
     </div>
     
   ) : (

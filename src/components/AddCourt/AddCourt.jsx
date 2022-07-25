@@ -69,7 +69,7 @@ function AddCourt() {
       </div>
       <br />
       <div className='addCourtDiv'>
-<p>{JSON.stringify(pins)}</p>
+{/* <p>{JSON.stringify(pins)}</p> */}
 <h1>Add A Court</h1>
 {/* <h2>Lat: {geolocation.lat}, Lng: {geolocation.lng}</h2> */}
 

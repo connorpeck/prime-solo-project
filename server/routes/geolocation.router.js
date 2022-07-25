@@ -43,7 +43,7 @@ module.exports = router;
 router.delete('/', (req, res) => {
   
 
-  const queryText = `DELETE FROM "geolocation" WHERE geolocation.id = 1`;
+  const queryText = `DELETE FROM "geolocation" WHERE geolocation.id = 3;`;
   pool.query( queryText)
   .then( () => res.sendStatus(200) )
   .catch((err) => {
@@ -51,6 +51,16 @@ router.delete('/', (req, res) => {
     res.sendStatus(500);
   });
 });
+
+router.put('/', (req, res)=>{
+  const queryText = `UPDATE "geolocation" SET review = 'NEW REVIEW' WHERE geolocation.id=2;`;
+  pool.query(queryText)
+  .then(() => res.sendStatus(200))
+  .catch((err)=>{
+    console.log('update review failed', err);
+    res.sendStatus(500);
+  })
+})
 
 module.exports = router;
 

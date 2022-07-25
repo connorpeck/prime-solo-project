@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -8,10 +8,13 @@ function ReviewForm(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
+
+  const dispatch = useDispatch();
   const [heading, setHeading] = useState('Review Form!!!!');
+  const [review, setReview] = useState('test review state!');
 
 
-  const review ={
+  const reviewForm ={
     courtName: 'The Tennis Court Name',
     review: 'What a lovely court',
     rating: '5 Stars'
@@ -19,13 +22,14 @@ function ReviewForm(props) {
 
   function addReview () {
     console.log('in add review');
+    dispatch({type: 'SET_REVIEW', payload: review});
   }
   return (
     <div>
       
-      <h2>Court Name: {review.courtName}</h2>
+      <h2>Court Name: {reviewForm.courtName}</h2>
       <h2>Review: <input></input><button onClick={addReview}>Add Review</button></h2> 
-      <h2>Rating: {review.rating}</h2>
+      <h2>Rating: {reviewForm.rating}</h2>
     </div>
   );
 }
