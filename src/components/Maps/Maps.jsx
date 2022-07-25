@@ -4,21 +4,24 @@ import {
   GoogleMap,
   useJsApiLoader,
   Marker,
-  InfoWindow,
+  InfoWindow
 } from "@react-google-maps/api";
 import { useDispatch, useSelector } from "react-redux";
 import ReviewForm from "../ReviewForm/ReviewForm";
+import { useParams } from "react-router-dom";
 
 // import {GoogleMapsReact} from 'google-map-react'
 
 function Maps() {
   const geolocation = useSelector((store) => store.geolocation);
   const dispatch = useDispatch();
+  // const courtID = useParams();
   const pins = useSelector((store)=> store.pins);
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
     dispatch({type:'FETCH_PINS'});
+    // console.log('COURT ID', courtID);
   }, []);
 
   

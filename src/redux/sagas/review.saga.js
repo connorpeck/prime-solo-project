@@ -4,7 +4,7 @@ import axios from 'axios';
 function* updateReview (action) {
   try {
     
-   yield axios.put('/api/geolocation')
+   yield axios.put('/api/geolocation', action.payload)
    .then(response => {
      console.log('update review RES', response);
    })

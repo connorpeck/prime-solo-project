@@ -3,11 +3,12 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
-router.get('/', (req, res) => {
-  console.log('req.query',req.query);
-  const query = `SELECT * FROM "profile" JOIN "user" AS u ON profile.user_id= u.id WHERE profile.user_id= 2`;
-  // const values = [user.id]
-  pool.query(query)
+
+router.get('/:id', (req, res) => {
+  console.log('req.query in PROFILE ROUTER',req.params);
+  const query = `SELECT * FROM "profile" JOIN "user" AS u ON profile.user_id= u.id WHERE profile.user_id= $1`;
+  const values = [req.params.id];
+  pool.query(query, values)
   .then(result => {
     console.log('hgfkghfkghkhjglkjhb', result.rows);
     res.send(result.rows[0]);

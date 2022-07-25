@@ -22,19 +22,21 @@ function Profile() {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  const userID = useParams();
+  const ID = useParams();
   const dispatch = useDispatch();
   const profile = useSelector((store)=> store.profile);
   const user = useSelector((store)=> store.user);
-  const geolocation = useSelector((store)=> store.geolocation);
+  // const geolocation = useSelector((store)=> store.geolocation);
+  // const userID = user.find((user) => user.id === Number(ID.id));
+  
 
 
   // const [heading, setHeading] = useState('Profile');
 
   
   useEffect(() => {
-    dispatch({ type: "FETCH_PROFILE"});
-    dispatch({ type: "SEND_ID", payload:user.id});
+    dispatch({ type: "FETCH_PROFILE", payload:user.id});
+    // dispatch({ type: "SEND_ID", payload:user.id});
     console.log('PROFILE TEST', profile);
   }, []);
 

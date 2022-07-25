@@ -34,7 +34,7 @@ function Nav() {
             <Link className="navLink" to="/maps">
               Maps
             </Link>
-            <Link className="navLink" to="/profile">
+            <Link className="navLink" to="/profile/:id">
               Profile
             </Link>
             <Link className="navLink" to="/addCourt">

@@ -53,7 +53,9 @@ router.delete('/', (req, res) => {
 });
 
 router.put('/', (req, res)=>{
-  const queryText = `UPDATE "geolocation" SET review = 'NEW REVIEW' WHERE geolocation.id=2;`;
+  console.log('update review', req.body);
+  const queryText = `UPDATE "geolocation" SET review = 'TEST REVIEW UPDATE' WHERE geolocation.id=2;`;
+  // const values = [req.body]
   pool.query(queryText)
   .then(() => res.sendStatus(200))
   .catch((err)=>{

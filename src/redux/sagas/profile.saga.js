@@ -15,9 +15,9 @@ function* saveProfile(action) {
 
 
 function* fetchProfile(action){
-  console.log('in fetchProfile');
+  console.log('in fetchProfile', action.payload);
   try {
-      const response = yield axios.get('/api/profile' , action.payload );
+      const response = yield axios.get(`/api/profile/${action.payload}` );
       console.log('SET_PROFILE DATA IN SAGA', response.data );
       yield put ({ type: 'SET_PROFILE', payload: response.data });
   } catch (err){
