@@ -8,6 +8,7 @@ function ReviewForm(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
+  const pins= useSelector((store)=> store.pins);
 
   const dispatch = useDispatch();
   const [heading, setHeading] = useState('Review Form!!!!');
@@ -25,9 +26,9 @@ function ReviewForm(props) {
     dispatch({type: 'SET_REVIEW', payload: review});
   }
   return (
-    <div>
+    <div className='reviewForm'>
       
-      <h2>Court Name: {reviewForm.courtName}</h2>
+      <h2>Court Name: {reviewForm.courtName} {JSON.stringify(pins)}</h2>
       <h2>Review: <input></input><button onClick={addReview}>Add Review</button></h2> 
       <h2>Rating: {reviewForm.rating}</h2>
     </div>

@@ -7,8 +7,9 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   console.log('req.query geolocation router', req.query);
-  const query = `SELECT * FROM "geolocation"`;
-  pool.query(query)
+  const query = `SELECT * FROM "geolocation" WHERE user_id=$1;`;
+  const value =[req.user.id]
+  pool.query(query, value)
   .then(result => {
     console.log('asdfasdfas results', result.rows);
     res.send(result.rows);
@@ -56,10 +57,10 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-router.put('/', (req, res)=>{
-  console.log('update review', req.body);
-  const queryText = `UPDATE "geolocation" SET review = 'TEST REVIEW UPDATE' WHERE user_id=$1;`;
-  const values = [req.user.id]
+router.put('/:id', (req, res)=>{
+  console.log('update review', req.params.id);
+  const queryText = `UPDATE "geolocation" SET review = 'astasdtsdtsd' WHERE user_id=$1 AND id=$2;`;
+  const values = [req.user.id, req.params.id]
   // const values = [req.body]
   pool.query(queryText, values)
   .then(() => res.sendStatus(200))

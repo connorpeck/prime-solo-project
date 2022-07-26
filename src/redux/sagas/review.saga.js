@@ -4,11 +4,10 @@ import axios from 'axios';
 function* updateReview (action) {
   try {
     
-   yield axios.put('/api/geolocation', action.payload)
-   .then(response => {
-     console.log('update review RES', response);
-   })
+   const response = yield axios.put(`/api/geolocation/${action.payload}`);
+   console.log('REVIEW SAGA RESPONSE', response.data);
   } catch (error) {
+    console.log('err in update review');
 
   }
 }
