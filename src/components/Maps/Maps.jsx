@@ -46,6 +46,10 @@ function Maps() {
     lng: -93.091301
   };
 
+  const id = ["72d068a3c1025ca3"]
+
+
+
   // const center = useEffect(()=> ({lat: 44.9537,
   //   lng: -93.091301}), []);/// trying to not recenter on pin click
   function deleteCourt() {
@@ -53,15 +57,7 @@ function Maps() {
     console.log("in deleteCourt");
     dispatch({ type: "DELETE_COURT", payload: selected.id });
   }
-  // const marker = {
-  //   lat:Number(geolocation.lat),
-  //   lng: Number(geolocation.lng),
-  // };
-
-  // const animation = {
-  //   animation: BOUNCE
-  // }
-
+  
   // const icon = {
   //   url:"racket.png",
   //   // anchor: new google.maps.Point(17, 46),
@@ -73,12 +69,84 @@ function Maps() {
   //   scale: 1.5
   // }
 
-  // const markers = [
-  //   [
-  //     44.945655,
-  //     -93.12167319999999
-  //   ]
-  // ] // end markers array
+
+
+const customMapStyle = [
+    {
+        featureType: "poi",
+        elementType: "geometry",
+        stylers: [
+            {
+                color: "#eeeeee",
+            },
+        ],
+    },
+    {
+        featureType: "poi",
+        elementType: "labels.text",
+        stylers: [
+            {
+                visibility: "off",
+            },
+        ],
+    },
+    {
+        featureType: "water",
+        elementType: "geometry.fill",
+        stylers: [
+            {
+                color: "#d1e7ff",
+            },
+        ],
+    },
+    {
+      featureType: "landscape",
+      elementType: "geometry.fill",
+      stylers: [
+          {
+              color: "#c5e2cf",
+          },
+      ],
+  },
+  {
+    featureType: "road.highway",
+    elementType: "geometry.fill",
+    stylers: [
+        {
+            color: "#fbff00",
+        },
+    ],
+},
+{
+  featureType: "road.local",
+  elementType: "geometry.fill",
+  stylers: [
+      {
+          color: "#e0f000",
+      },
+  ],
+},
+{
+  featureType: "road.local.drivable",
+  elementType: "all",
+  stylers: [
+      {
+        visibility: "off",
+      },
+  ],
+},
+{
+  featureType: "road.arterial",
+  elementType: "all",
+  stylers: [
+      {
+        color: "#fff799",
+      },
+  ],
+},
+];
+   
+
 
   const { isLoaded } = useJsApiLoader({
     id: "72d068a3c1025ca3",
@@ -92,7 +160,9 @@ function Maps() {
         center={center}
         zoom={12}
         minZoom={-3}
-        options={{disableAutoPan: true}}
+        options={{
+            styles: customMapStyle,
+        }}
 
         // id={c8acd79f4ac60dee}
       >
