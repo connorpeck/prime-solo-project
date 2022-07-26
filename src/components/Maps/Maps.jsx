@@ -18,18 +18,15 @@ function Maps() {
   // const courtID = useParams();
   const pins = useSelector((store) => store.pins);
   const [selected, setSelected] = useState(null);
-  const [review, setReview] = useState('test review state!');
+  const [review, setReview] = useState('THIS IS THE TEST REVIEW');
 
 
-  const reviewForm ={
-    courtName: 'The Tennis Court Name',
-    review: 'What a lovely court',
-    rating: '5 Stars'
-  }
+
   function addReview () {
-    console.log('in add review');
-    dispatch({type: 'SET_REVIEW', payload: selected.id});
-    dispatch({type:'FETCH_PINS'})
+    console.log('in add review', review);
+    dispatch({type: 'SET_REVIEW', payload: selected.id, review});
+    // dispatch({type: 'ADD_REVIEW', payload:review});
+    // dispatch({type:'SET_REVIEW', payload:review})
   }
 
   useEffect(() => {
@@ -84,7 +81,7 @@ function Maps() {
   // ] // end markers array
 
   const { isLoaded } = useJsApiLoader({
-    id: "c8acd79f4ac60dee",
+    id: "72d068a3c1025ca3",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
@@ -123,10 +120,10 @@ function Maps() {
                   Court Address: {selected.address}
                 </h2>
                 <h2>
-                  Review: {selected.review}<input></input>
+                  Review: {selected.review}<input onChange={(event) => setReview(event.target.value)}></input>
                   <button onClick={addReview}>Add Review</button>
                 </h2>
-                <h2>Rating: {reviewForm.rating}</h2>
+                <h2>Rating: </h2>
               </div>
               <button onClick={deleteCourt}>Delete</button>
             </div>

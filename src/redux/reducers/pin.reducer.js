@@ -1,5 +1,5 @@
 const pinReducer = (state = [], action) => {
-  console.log('THIS IS REDUCER', action.payload);
+  console.log('THIS IS REDUCER for SET_PINS', action.payload);
     switch (action.type) {
       case 'SET_PINS':
         return action.payload;

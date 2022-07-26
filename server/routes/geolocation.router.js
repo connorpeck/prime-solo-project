@@ -27,7 +27,7 @@ router.post('/geolocation', (req, res) => {
   const lat = req.body.latLng.lat;
   const lng = req.body.latLng.lng;
   const address= req.body.formattedAddress;
-  const review = req.body.review;
+  const review = 'please addd a review';
   const user_id = req.user.id;
   
 
@@ -57,10 +57,10 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-router.put('/:id', (req, res)=>{
-  console.log('update review', req.params.id);
-  const queryText = `UPDATE "geolocation" SET review = 'astasdtsdtsd' WHERE user_id=$1 AND id=$2;`;
-  const values = [req.user.id, req.params.id]
+router.put('/:id/:review', (req, res)=>{
+  console.log('update review ROUTER PARAMS ID', req.params.id, 'update review ROUTER PARAMS review', req.params.review);
+  const queryText = `UPDATE "geolocation" SET review = $1 WHERE user_id=$2 AND id=$3;`;
+  const values = [req.params.review, req.user.id, req.params.id]
   // const values = [req.body]
   pool.query(queryText, values)
   .then(() => res.sendStatus(200))

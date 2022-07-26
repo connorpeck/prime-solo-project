@@ -21,12 +21,12 @@ function ReviewForm(props) {
     rating: '5 Stars'
   }
 
-  function addReview () {
-    console.log('in add review');
-    dispatch({type: 'SET_REVIEW', payload: review});
-  }
+  // function addReview () {
+  //   console.log('in add review');
+  //   dispatch({type: 'SET_REVIEW', payload: review});
+  // }
   return (
-    <div className='reviewForm'>
+    <div className='review'>
       
       <h2>Court Name: {reviewForm.courtName} {JSON.stringify(pins)}</h2>
       <h2>Review: <input></input><button onClick={addReview}>Add Review</button></h2> 

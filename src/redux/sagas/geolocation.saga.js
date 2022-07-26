@@ -41,6 +41,8 @@ function* fetchAllGeolocations(action){
   }
 }
 
+
+
 function* deleteCourt(action){
   console.log('in delteCourt');
   try {
@@ -64,6 +66,7 @@ function* geolocationSaga() {
   yield takeLatest('SET_ADDRESS', convertAndStoreGeoLocation);
   yield takeLatest('FETCH_PINS', fetchAllGeolocations);
   yield takeLatest('DELETE_COURT', deleteCourt);
+  // yield takeLatest('ADD_REVIEW', convertAndStoreGeoLocation)
 }
 
 export default geolocationSaga;
