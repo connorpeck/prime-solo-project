@@ -14,18 +14,15 @@ import Paper from "@mui/material/Paper";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import StarIcon from "@mui/icons-material/Star";
 import DeleteIcon from "@mui/icons-material/Delete";
+// import { makeStyles } from "@mui/material";
+// import { withTheme } from "@emotion/react";
 // import {GoogleMapsReact} from 'google-map-react'
 const center = {
   lat: 44.9537,
   lng: -93.091301,
 };
 
-// const icon = {
-//   url:"racket.png",
-//   // anchor: new google.maps.Point(17, 46),
 
-//   scaledSize: new google.maps.Size(60, 60)
-// }
 
 function Maps() {
   const geolocation = useSelector((store) => store.geolocation);
@@ -219,6 +216,8 @@ function Maps() {
                     <BorderColorIcon
                       onClick={toggleShowReview}
                       className="toggleReview"
+                      sx={{ color: '#f0b800',
+                  fontSize: 35}}
                     />
                   </h2>
                   <h2>
@@ -236,11 +235,21 @@ function Maps() {
                     </select>
                     )}
                     <Button onClick={addRating}>Update Rating</Button>
-                    <StarIcon onClick={toggleShowRating} className="toggleRating" />
+                    <StarIcon   onClick={toggleShowRating} className="toggleRating" sx={{ color: '#f0b800',
+                  fontSize: 35}}/>
                   </h2>
                 </div>
                 <div>
                   <Button
+                    sx={{
+                      borderRadius: 100,
+                      background: '#95ca84',
+                      hoverColor: 'white',
+                      '&:hover': {
+                        backgroundColor: '#638359',
+                        color: 'white',
+                    },
+                    }}
                     endIcon={<DeleteIcon />}
                     variant="contained"
                     onClick={deleteCourt}

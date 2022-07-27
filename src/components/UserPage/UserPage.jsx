@@ -14,7 +14,7 @@ function UserPage() {
 
 
   useEffect(() => {
-    // dispatch({ type: "GET_PROFILE"});
+    dispatch({ type: "FETCH_PROFILE"});
     console.log('profile object', profile);
   }, []);
   
