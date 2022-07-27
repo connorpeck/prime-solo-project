@@ -11,9 +11,9 @@ import ReviewForm from "../ReviewForm/ReviewForm";
 import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import StarIcon from '@mui/icons-material/Star';
-import DeleteIcon from '@mui/icons-material/Delete';
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import StarIcon from "@mui/icons-material/Star";
+import DeleteIcon from "@mui/icons-material/Delete";
 // import {GoogleMapsReact} from 'google-map-react'
 const center = {
   lat: 44.9537,
@@ -34,36 +34,36 @@ function Maps() {
   const [selected, setSelected] = useState(null);
   const [rating, setRating] = useState(null);
   const [review, setReview] = useState("");
-  const [show, setShow] = useState(true);
+  const [showReviewInput, setShowReviewInput] = useState(true);
+  const [showRatingInput, setShowRatingInput] = useState(true);
 
-  const toggleShow = () => {
-    setShow(!show);
-    console.log("in toggle show");
+  const toggleShowReview= () => {
+    setShowReviewInput(!showReviewInput);
+    console.log("in toggleShowReview");
   }; // end toggleShow
+
+
+  const toggleShowRating= () => {
+    setShowRatingInput(!showRatingInput);
+    console.log("in toggleShowRating");
+  }; // end toggleShow
+
 
   function addReview() {
     console.log("in add review", review);
     dispatch({ type: "SET_REVIEW", payload: selected.id, review });
     dispatch({ type: "FETCH_PINS" });
-
-    // dispatch({type: 'ADD_REVIEW', payload:review});
-    // dispatch({type:'SET_REVIEW', payload:review})
   }
 
   function addRating() {
     console.log("in add rating", rating);
     dispatch({ type: "SET_RATING", payload: selected.id, rating });
     dispatch({ type: "FETCH_PINS" });
-
-    // dispatch({type: 'ADD_REVIEW', payload:review});
-    // dispatch({type:'SET_REVIEW', payload:review})
   }
 
   useEffect(() => {
     dispatch({ type: "FETCH_PINS" });
-    // dispatch({type:'UPDATE_COURT', payload: selected.id})
     console.log(pins);
-    // console.log('COURT ID', courtID);
   }, []);
 
   const containerStyle = {
@@ -71,24 +71,16 @@ function Maps() {
     height: "500px",
   };
 
-  // const id = ["72d068a3c1025ca3"]
-
   const mapRef = useRef();
   const onMapLoad = (map) => {
     mapRef.current = map;
   };
 
-  // const center = useEffect(()=> ({lat: 44.9537,
-  //   lng: -93.091301}), []);/// trying to not recenter on pin click
   function deleteCourt() {
     console.log(selected.id);
     console.log("in deleteCourt");
     dispatch({ type: "DELETE_COURT", payload: selected.id });
   }
-
-  // const scale = {
-  //   scale: 1.5
-  // }
 
   const customMapStyle = [
     {
@@ -177,13 +169,11 @@ function Maps() {
           mapContainerStyle={containerStyle}
           center={center}
           zoom={12}
-          // onLoad={onMapLoad}
           minZoom={-3}
           options={{
             styles: customMapStyle,
           }}
 
-          // id={c8acd79f4ac60dee}
         >
           {pins.map((marker) => (
             <Marker
@@ -215,31 +205,48 @@ function Maps() {
                 <div className="reviewForm">
                   <h2>Court Address: {selected.address}</h2>
                   <h2>
-                    
                     Review: {selected.review}
                     <br />
-                    <input
+                    {showReviewInput ? (
+                   <p></p>)
+                    :
+                    (
+                      <input
                       onChange={(event) => setReview(event.target.value)}
                     ></input>
+                    )}
                     <Button onClick={addReview}>Update Review</Button>
-                    <BorderColorIcon onClick={toggleShow} className='toggleReview'/>
-                    
+                    <BorderColorIcon
+                      onClick={toggleShowReview}
+                      className="toggleReview"
+                    />
                   </h2>
                   <h2>
                     Rating: {selected.rating}
-                    <select onChange={(event) => setRating(event.target.value)}>
+                    <br />
+                    {showRatingInput ? (
+                   <p></p>)
+                   :
+                    (<select onChange={(event) => setRating(event.target.value)}>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
                       <option value="5">5</option>
                     </select>
+                    )}
                     <Button onClick={addRating}>Update Rating</Button>
-                    <StarIcon onClick={toggleShow} className='toggleRating'/>
+                    <StarIcon onClick={toggleShowRating} className="toggleRating" />
                   </h2>
                 </div>
                 <div>
-                  <Button endIcon={<DeleteIcon/>} variant="contained" onClick={deleteCourt}>Delete</Button>
+                  <Button
+                    endIcon={<DeleteIcon />}
+                    variant="contained"
+                    onClick={deleteCourt}
+                  >
+                    Delete
+                  </Button>
                 </div>
               </div>
             </InfoWindow>
