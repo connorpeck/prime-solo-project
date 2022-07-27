@@ -71,7 +71,7 @@ function AddCourt() {
       <br />
       <div className='addCourtDiv'>
 {/*     */}
-<h1>Add A Court</h1>
+<h1 className='addCourtText'>Add A Court</h1>
 {/* <h2>Lat: {geolocation.lat}, Lng: {geolocation.lng}</h2> */}
 
 

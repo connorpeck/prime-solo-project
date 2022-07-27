@@ -2,6 +2,7 @@ html,
 body,
 #react-root {
   height: 100%;
+  background-color: #c2e3cc;
 }
 
 body {
@@ -29,10 +30,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #b1ffa3;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: rgb(109, 187, 119);
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -110,3 +111,5 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+

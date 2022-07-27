@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 
 
 
+
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name Profile with the name for the new component.
@@ -50,11 +51,21 @@ function Profile() {
 
 
 
+{/* <div>
+      {{profile.first_name} === '' ? (
+        <h1>No profile created</h1>
+      ) : (
+       
+      )}
+    </div> */}
+    
 
-<TableContainer>
-   <Table className='center'>
+<Paper elevation={24}
+>
+   <Table className='center'
+   size=''>
   <TableHead> 
-    <TableRow align='center'>
+    <TableRow className='row' align='center'>
       First Name 
       <TableCell align='center'>{profile.first_name}</TableCell>
     </TableRow>
@@ -81,7 +92,7 @@ function Profile() {
   </TableHead>
      
    </Table>
-   </TableContainer>
+   </Paper>
    
       
       

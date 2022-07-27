@@ -7,6 +7,7 @@
   margin: 0 0 30px;
   background-color: #f6f16b;
   overflow: hidden;
+  text-align: center;
 }
 
 .nav a {
@@ -19,12 +20,13 @@
   color: #000000;
   padding-left: 10px;
   margin: 0;
+  text-align: center;
 }
 
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #95ca84;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -38,5 +40,5 @@
 }
 
 .navLink:hover {
-  background-color: #008183;
+  background-color:#638359;
 }

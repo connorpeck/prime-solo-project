@@ -9,6 +9,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { useParams } from "react-router-dom";
+import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 
 
 // import {GoogleMapsReact} from 'google-map-react'
@@ -161,6 +163,7 @@ const customMapStyle = [
 
   return isLoaded ? (
     <div>
+      <Paper elevation={6}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -181,11 +184,12 @@ const customMapStyle = [
               setSelected(marker);
             }}
             position={{ lat: Number(marker.lat), lng: Number(marker.lng) }}
-            pan
+            
+            
             icon={{
               url:"racket.png",
               // anchor: new google.maps.Point(17, 46),
-            
+            animation: google.maps.Animation.BOUNCE,
               scaledSize: new google.maps.Size(60, 60)}}
 
           ></Marker>
@@ -204,17 +208,21 @@ const customMapStyle = [
                   Court Address: {selected.address}
                 </h2>
                 <h2>
-                  Review: {selected.review}<input onChange={(event) => setReview(event.target.value)}></input>
-                  <button onClick={addReview}>Add Review</button>
+                  Review: {selected.review}<br /><input onChange={(event) => setReview(event.target.value)}></input>
+                  
+                  <Button onClick={addReview}>Update Review</Button>
                 </h2>
                 <h2>Rating: </h2>
               </div>
-              <button onClick={deleteCourt}>Delete</button>
-            </div>
+              <div>
+              <Button onClick={deleteCourt}>Delete</Button>
+              </div>
+            </div >
           </InfoWindow>
         ) : null}
         <></>
       </GoogleMap>
+      </Paper>
     </div>
   ) : (
     <>LOADING</>
