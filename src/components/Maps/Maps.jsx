@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useRef} from "react";
 import {
   GoogleMap,
   useJsApiLoader,
@@ -10,12 +10,23 @@ import { useDispatch, useSelector } from "react-redux";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { useParams } from "react-router-dom";
 
+
 // import {GoogleMapsReact} from 'google-map-react'
+const center = {
+  lat: 44.9537,
+  lng: -93.091301
+};
+
+// const icon = {
+//   url:"racket.png",
+//   // anchor: new google.maps.Point(17, 46),
+
+//   scaledSize: new google.maps.Size(60, 60)
+// }
 
 function Maps() {
   const geolocation = useSelector((store) => store.geolocation);
   const dispatch = useDispatch();
-  // const courtID = useParams();
   const pins = useSelector((store) => store.pins);
   const [selected, setSelected] = useState(null);
   const [review, setReview] = useState('THIS IS THE TEST REVIEW');
@@ -41,13 +52,14 @@ function Maps() {
     height: "500px",
   };
 
-  const center = {
-    lat: 44.9537,
-    lng: -93.091301
-  };
+  
 
-  const id = ["72d068a3c1025ca3"]
+  // const id = ["72d068a3c1025ca3"]
 
+  const mapRef = useRef();
+  const onMapLoad = (map) => {
+    mapRef.current = map;
+  }
 
 
   // const center = useEffect(()=> ({lat: 44.9537,
@@ -58,12 +70,7 @@ function Maps() {
     dispatch({ type: "DELETE_COURT", payload: selected.id });
   }
   
-  // const icon = {
-  //   url:"racket.png",
-  //   // anchor: new google.maps.Point(17, 46),
-
-  //   // scaledSize: new google.maps.Size(50, 50)
-  // }
+ 
 
   // const scale = {
   //   scale: 1.5
@@ -113,7 +120,7 @@ const customMapStyle = [
     elementType: "geometry.fill",
     stylers: [
         {
-            color: "#fbff00",
+            color: "#feffa8",
         },
     ],
 },
@@ -147,7 +154,6 @@ const customMapStyle = [
 ];
    
 
-
   const { isLoaded } = useJsApiLoader({
     id: "72d068a3c1025ca3",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -159,10 +165,12 @@ const customMapStyle = [
         mapContainerStyle={containerStyle}
         center={center}
         zoom={12}
+        // onLoad={onMapLoad}
         minZoom={-3}
         options={{
             styles: customMapStyle,
         }}
+        
 
         // id={c8acd79f4ac60dee}
       >
@@ -173,7 +181,13 @@ const customMapStyle = [
               setSelected(marker);
             }}
             position={{ lat: Number(marker.lat), lng: Number(marker.lng) }}
-            key={marker.id}
+            pan
+            icon={{
+              url:"racket.png",
+              // anchor: new google.maps.Point(17, 46),
+            
+              scaledSize: new google.maps.Size(60, 60)}}
+
           ></Marker>
         ))}
         {selected ? (
