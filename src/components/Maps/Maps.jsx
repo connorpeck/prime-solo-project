@@ -31,16 +31,30 @@ function Maps() {
   const dispatch = useDispatch();
   const pins = useSelector((store) => store.pins);
   const [selected, setSelected] = useState(null);
-  const [review, setReview] = useState('THIS IS THE TEST REVIEW');
+  const [rating, setRating] = useState(null);
+  const [review, setReview] = useState('');
+
 
 
 
   function addReview () {
     console.log('in add review', review);
     dispatch({type: 'SET_REVIEW', payload: selected.id, review});
+    dispatch({ type: "FETCH_PINS" });
+  
     // dispatch({type: 'ADD_REVIEW', payload:review});
     // dispatch({type:'SET_REVIEW', payload:review})
   }
+
+  function addRating () {
+    console.log('in add rating', rating);
+    dispatch({type: 'SET_RATING', payload: selected.id, rating});
+    dispatch({ type: "FETCH_PINS" });
+  
+    // dispatch({type: 'ADD_REVIEW', payload:review});
+    // dispatch({type:'SET_REVIEW', payload:review})
+  }
+
 
   useEffect(() => {
     dispatch({ type: "FETCH_PINS" });
@@ -70,6 +84,7 @@ function Maps() {
     console.log(selected.id);
     console.log("in deleteCourt");
     dispatch({ type: "DELETE_COURT", payload: selected.id });
+  
   }
   
  
@@ -212,7 +227,14 @@ const customMapStyle = [
                   
                   <Button onClick={addReview}>Update Review</Button>
                 </h2>
-                <h2>Rating: </h2>
+                <h2>
+                  Rating: {selected.rating} <select onChange={(event) => setRating(event.target.value)}>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
+                    </select><Button onClick={addRating}>Update Rating</Button> </h2>
               </div>
               <div>
               <Button onClick={deleteCourt}>Delete</Button>

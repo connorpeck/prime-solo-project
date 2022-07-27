@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const profileRouter = require('./routes/profile.router');
 const geolocationRouter = require('./routes/geolocation.router');
+const ratingRouter = require('./routes/rating.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,8 +28,9 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/profile', profileRouter);
 // app.use('/api/id', profileRouter);
-app.use('/api/geolocation', geolocationRouter)
-app.use('/api/geolocation/delete', geolocationRouter)
+app.use('/api/geolocation', geolocationRouter);
+app.use('/api/geolocation/delete', geolocationRouter);
+app.use('/api/rating', ratingRouter);
 
 // Serve static files
 app.use(express.static('build'));

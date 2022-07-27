@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import profileSaga from './profile.saga';
 import geolocationSaga from './geolocation.saga';
 import reviewSaga from './review.saga';
+import ratingSaga from './rating.saga';
 // import profileSaga from './profile.saga';
 
 
@@ -22,6 +23,7 @@ export default function* rootSaga() {
     userSaga(),
     profileSaga(),
     geolocationSaga(),
-    reviewSaga()
+    reviewSaga(),
+    ratingSaga()
   ]);
 }

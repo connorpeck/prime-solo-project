@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+// import LoginIcon from '@mui/icons-material/Login';
+import Button from '@mui/material/Button';
+import SportsTennisIcon from '@mui/icons-material/SportsTennis';
+
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -25,11 +29,11 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
+    <form className="formPanel">
       <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
-          {errors.loginMessage}
+          {errors.loginMessage}=
         </h3>
       )}
       <div>
@@ -57,7 +61,9 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <Button onClick={login} variant='contained' startIcon={<SportsTennisIcon/>}
+        color='primary'
+        >Login</Button>
       </div>
     </form>
   );

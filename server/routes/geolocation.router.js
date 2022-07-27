@@ -28,12 +28,13 @@ router.post('/geolocation', (req, res) => {
   const lng = req.body.latLng.lng;
   const address= req.body.formattedAddress;
   const review = 'please addd a review';
+  const rating = 'No current rating'
   const user_id = req.user.id;
   
 
-  const queryText = `INSERT INTO "geolocation" (lat, lng, address, review, user_id)
-  VALUES ($1, $2, $3, $4, $5)`;
-  pool.query( queryText, [lat, lng, address,review, user_id])
+  const queryText = `INSERT INTO "geolocation" (lat, lng, address, review, rating, user_id)
+  VALUES ($1, $2, $3, $4, $5, $6)`;
+  pool.query( queryText, [lat, lng, address,review, rating, user_id])
   .then( () => res.sendStatus(201) )
   .catch((err) => {
     console.log('geolocation save failed', err);
@@ -61,6 +62,19 @@ router.put('/:id/:review', (req, res)=>{
   console.log('update review ROUTER PARAMS ID', req.params.id, 'update review ROUTER PARAMS review', req.params.review);
   const queryText = `UPDATE "geolocation" SET review = $1 WHERE user_id=$2 AND id=$3;`;
   const values = [req.params.review, req.user.id, req.params.id]
+  // const values = [req.body]
+  pool.query(queryText, values)
+  .then(() => res.sendStatus(200))
+  .catch((err)=>{
+    console.log('update review failed', err);
+    res.sendStatus(500);
+  })
+})
+
+router.put('/:id/:rating', (req, res)=>{
+  console.log('update rating ROUTER PARAMS ID', req.params.id, 'update rating ROUTER PARAMS rating', req.params.rating);
+  const queryText = `UPDATE "geolocation" SET rating = $1 WHERE user_id=$2 AND id=$3;`;
+  const values = [req.params.rating, req.user.id, req.params.id]
   // const values = [req.body]
   pool.query(queryText, values)
   .then(() => res.sendStatus(200))
