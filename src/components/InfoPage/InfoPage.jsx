@@ -9,7 +9,7 @@ import ProfileForm from '../ProfileForm/ProfileForm';
 function InfoPage() {
   return (
     <div className="container">
-      <p>Info Page</p>
+      <p></p>
       <ProfileForm />
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './ProfileForm.css'
 
 function ProfileForm() {
   const [firstName, setFirstName] = useState('');
@@ -30,7 +31,7 @@ function ProfileForm() {
         user_id: user.id
       },
     });
-    history.push('/home')
+    history.push('/profile')
   }; // end makeProfile
 
   return (
@@ -116,7 +117,6 @@ function ProfileForm() {
       </div>
       <div>
       <input className="btn" type="submit" name="submit" value="Save" />
-      <input className="btn" type="submit" name="submit" value="Home" />
       </div>
       
     </form>

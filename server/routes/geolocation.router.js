@@ -27,8 +27,8 @@ router.post('/geolocation', (req, res) => {
   const lat = req.body.latLng.lat;
   const lng = req.body.latLng.lng;
   const address= req.body.formattedAddress;
-  const review = 'please addd a review';
-  const rating = 'No current rating'
+  const review = 'No Current Review';
+  const rating = 'No Current Rating';
   const user_id = req.user.id;
   
 

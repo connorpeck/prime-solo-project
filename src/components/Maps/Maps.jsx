@@ -14,6 +14,8 @@ import Paper from "@mui/material/Paper";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import StarIcon from "@mui/icons-material/Star";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 // import { makeStyles } from "@mui/material";
 // import { withTheme } from "@emotion/react";
 // import {GoogleMapsReact} from 'google-map-react'
@@ -25,7 +27,7 @@ const center = {
 
 
 function Maps() {
-  const geolocation = useSelector((store) => store.geolocation);
+  const profile = useSelector((store) => store.profile);
   const dispatch = useDispatch();
   const pins = useSelector((store) => store.pins);
   const [selected, setSelected] = useState(null);
@@ -198,9 +200,10 @@ function Maps() {
               }}
             >
               <div>
-                <p>Tennis Court Test</p>
+                <h3>Court Added By: {profile.first_name} {profile.last_name} </h3>
                 <div className="reviewForm">
                   <h2>Court Address: {selected.address}</h2>
+                  <br />
                   <h2>
                     Review: {selected.review}
                     <br />
@@ -212,7 +215,7 @@ function Maps() {
                       onChange={(event) => setReview(event.target.value)}
                     ></input>
                     )}
-                    <Button onClick={addReview}>Update Review</Button>
+                    <Button  sx={{ color:"#95ca84" }} onClick={addReview}>Update</Button>
                     <BorderColorIcon
                       onClick={toggleShowReview}
                       className="toggleReview"
@@ -226,15 +229,15 @@ function Maps() {
                     {showRatingInput ? (
                    <p></p>)
                    :
-                    (<select onChange={(event) => setRating(event.target.value)}>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
+                    (<Select  onChange={(event) => setRating(event.target.value)}>
+                      <MenuItem value="1">1</MenuItem>
+                      <MenuItem value="2">2</MenuItem>
+                      <MenuItem value="3">3</MenuItem>
+                      <MenuItem value="4">4</MenuItem>
+                      <MenuItem value="5">5</MenuItem>
+                    </Select>
                     )}
-                    <Button onClick={addRating}>Update Rating</Button>
+                    <Button  sx={{ color:"#95ca84" }} onClick={addRating}>Update</Button>
                     <StarIcon   onClick={toggleShowRating} className="toggleRating" sx={{ color: '#f0b800',
                   fontSize: 35}}/>
                   </h2>

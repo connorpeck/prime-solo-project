@@ -1,6 +1,8 @@
-table, tr, td {
+Table, tr, td {
     border: 5px solid rgb(126, 126, 2);
     text-align: center;
+    max-width: 60vh;
+    background-color: rgba(255, 250, 245, 0.817);
     
   }
 
@@ -11,10 +13,11 @@ table, tr, td {
 
   h1{
       text-align: center;
-      color: rgb(89, 130, 86);
+      color: rgb(255, 255, 255);
   }
 
   .row {
-    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
-
+  

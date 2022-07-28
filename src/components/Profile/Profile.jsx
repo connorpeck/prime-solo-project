@@ -45,8 +45,8 @@ function Profile() {
 
   return (
 
-    <div>
-<h1>Profile</h1>
+    <div className='centerTable'>
+<h1 className='Profile'>Profile</h1>
 
 
 
@@ -59,10 +59,10 @@ function Profile() {
       )}
     </div> */}
     
-
-<Paper elevation={24}
->
-   <Table className='center'
+<div className='testDiv' >
+{/* <Paper className='paper' elevation={24}
+> */}
+   <Table align='center' className='center'
    size=''>
   <TableHead> 
     <TableRow className='row' align='center'>
@@ -92,11 +92,12 @@ function Profile() {
   </TableHead>
      
    </Table>
-   </Paper>
+   {/* </Paper> */}
    
       
       
   
+    </div>
     </div>
   );
 }

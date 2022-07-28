@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import "./Nav.css";
 import { useSelector } from "react-redux";
+import AppBar from '@mui/material/AppBar';
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
+    // <AppBar
+    // >
     <div className="nav">
+      
       <Link to="/home">
         <h2 className="nav-title">Tennis Tracker</h2>
       </Link>
@@ -54,8 +58,10 @@ function Nav() {
         <Link className="navLink" to="/about">
           About
         </Link>
+        
       </div>
     </div>
+    // </AppBar>
   );
 }
 

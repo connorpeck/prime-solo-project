@@ -3,6 +3,10 @@ import {useEffect} from "react"
 import {useDispatch, useSelector} from 'react-redux';
 import './AddCourt.css';
 import Maps from '../Maps/Maps'
+import Button from "@mui/material/Button";
+import SportsTennisIcon from "@mui/icons-material/SportsTennis";
+import TextField from '@mui/material/TextField';
+
 
 
 
@@ -63,7 +67,7 @@ function AddCourt() {
   return (
 
     <div>
-      <h1>{profile.first_name} {profile.last_name}'s Tennis Court List</h1>
+      <h1 className='tennisCourtListStyle'>{profile.first_name} {profile.last_name}'s Tennis Court List</h1>
       {/* <h2>{JSON.stringify(pin)}</h2> */}
     
       <div className='mapsDiv'>
@@ -72,15 +76,30 @@ function AddCourt() {
       <br />
       <div className='addCourtDiv'>
 {/*     */}
-<h1 className='addCourtText'>Add A Court</h1>
+<h1 className='addCourtText'>Add Court</h1>
 {/* <h2>Lat: {geolocation.lat}, Lng: {geolocation.lng}</h2> */}
 
 
 
 
-<form className='addressForm' onSubmit={storeAddress}>
-  <input onChange={(event) => setAddress(event.target.value)} type="text" placeholder='Address' />
-  <input className='btn' type='submit' name='submit' value='Add Court'/>
+<form className='addressForm'>
+  <TextField sx={{ color: 'white' }}id="standard-basic" label="Address" variant="standard" onChange={(event) => setAddress(event.target.value)} type="text" placeholder='' />
+  <Button
+          onClick={storeAddress}
+          variant="contained"
+          sx={{
+            borderRadius: 100,
+            background: "#95ca84",
+            hoverColor: "white",
+            "&:hover": {
+              backgroundColor: "#638359",
+              color: "white",
+            },
+          }}
+          startIcon={<SportsTennisIcon />}
+          color="primary"
+        >
+        </Button>
 </form></div>
 
 

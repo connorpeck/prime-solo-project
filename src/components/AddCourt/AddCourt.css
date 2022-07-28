@@ -1,15 +1,28 @@
 .addCourtDiv {
- margin: auto;
-    width: 50%;
-    border: 3px solid #f6f16b;
-    padding: 15px;
-    background-color: rgb(102, 168, 123);
+  margin: auto;
+  width: 35%;
+  padding: 15px;
+  background-color: rgb(102, 168, 123);
+  background: rgba(255, 255, 255, 0.33);
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.8px);
+  -webkit-backdrop-filter: blur(4.8px);
+  border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .addressForm {
-    text-align: center
+  text-align: center;
 }
 
 .addCourtText {
-    color: rgb(254, 254, 254);
+  color: #6f8d8e;
+  text-align: center;
+}
+
+.tennisCourtListStyle {
+  text-align: center;
+      color: rgb(255, 255, 255);
+      font-family: serif;
+      font-size: 30px;
 }

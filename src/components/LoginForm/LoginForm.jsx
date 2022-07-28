@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import './LoginForm.css';
 // import LoginIcon from '@mui/icons-material/Login';
-import Button from '@mui/material/Button';
-import SportsTennisIcon from '@mui/icons-material/SportsTennis';
+import Button from "@mui/material/Button";
+import SportsTennisIcon from "@mui/icons-material/SportsTennis";
 
 
 function LoginForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const errors = useSelector(store => store.errors);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
   const login = (event) => {
@@ -17,19 +18,20 @@ function LoginForm() {
 
     if (username && password) {
       dispatch({
-        type: 'LOGIN',
+        type: "LOGIN",
         payload: {
           username: username,
           password: password,
         },
       });
     } else {
-      dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
   }; // end login
 
   return (
-    <form className="formPanel">
+    
+    <form>
       <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
@@ -61,9 +63,23 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <Button onClick={login} variant='contained' startIcon={<SportsTennisIcon/>}
-        color='primary'
-        >Login</Button>
+        <Button
+          onClick={login}
+          variant="contained"
+          sx={{
+            borderRadius: 100,
+            background: "#95ca84",
+            hoverColor: "white",
+            "&:hover": {
+              backgroundColor: "#638359",
+              color: "white",
+            },
+          }}
+          startIcon={<SportsTennisIcon />}
+          color="primary"
+        >
+          Login
+        </Button>
       </div>
     </form>
   );

@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
+import './UserPage.css'
 import Maps from '../Maps/Maps';
 
 function UserPage() {

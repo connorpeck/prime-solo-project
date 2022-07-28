@@ -5,9 +5,10 @@
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #f6f16b;
+  background-color: #FDD4AF;
   overflow: hidden;
   text-align: center;
+  margin: auto;
 }
 
 .nav a {
@@ -15,18 +16,17 @@
 }
 
 .nav-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #000000;
-  padding-left: 10px;
-  margin: 0;
   text-align: center;
+  color: rgb(0, 0, 0);
+  font-family: serif;
+  font-size: 22px;
+  margin: auto;
 }
 
 .navLink {
   display: inline-block;
-  color: #f2f2f2;
-  background-color: #95ca84;
+  color: #016496;
+  background-color: #a3f6f5cd;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -40,5 +40,6 @@
 }
 
 .navLink:hover {
-  background-color:#638359;
+  background-color:#5694b3;
+  color: rgb(255, 255, 255)
 }
