@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect, useRef } from "react";
+import { useHistory } from 'react-router-dom';
 import {
   GoogleMap,
   useJsApiLoader,
@@ -35,6 +36,7 @@ function Maps() {
   const [review, setReview] = useState("");
   const [showReviewInput, setShowReviewInput] = useState(true);
   const [showRatingInput, setShowRatingInput] = useState(true);
+  const history = useHistory();
 
   const toggleShowReview= () => {
     setShowReviewInput(!showReviewInput);
@@ -47,17 +49,23 @@ function Maps() {
     console.log("in toggleShowRating");
   }; // end toggleShow
 
+  // const fetchPins = () => {
+  //   dispatch({ type: "FETCH_PINS" });
+  // }
 
   function addReview() {
     console.log("in add review", review);
     dispatch({ type: "SET_REVIEW", payload: selected.id, review });
-    dispatch({ type: "FETCH_PINS" });
+    // history.push('/addCourt')
+    // fetchPins();
   }
 
   function addRating() {
     console.log("in add rating", rating);
     dispatch({ type: "SET_RATING", payload: selected.id, rating });
     dispatch({ type: "FETCH_PINS" });
+    history.push('/addCourt')
+
   }
 
   useEffect(() => {
@@ -199,7 +207,7 @@ function Maps() {
                 setSelected(null);
               }}
             >
-              <div>
+              <div className="infoWindow">
                 <h3>Court Added By: {profile.first_name} {profile.last_name} </h3>
                 <div className="reviewForm">
                   <h2>Court Address: {selected.address}</h2>

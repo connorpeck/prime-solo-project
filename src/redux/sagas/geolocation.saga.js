@@ -66,6 +66,7 @@ function* geolocationSaga() {
   yield takeLatest('SET_ADDRESS', convertAndStoreGeoLocation);
   yield takeLatest('FETCH_PINS', fetchAllGeolocations);
   yield takeLatest('DELETE_COURT', deleteCourt);
+  
   // yield takeLatest('ADD_REVIEW', convertAndStoreGeoLocation)
 }
 

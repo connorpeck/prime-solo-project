@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import TextField from '@mui/material/TextField';
+import Button from "@mui/material/Button";
+import SportsTennisIcon from "@mui/icons-material/SportsTennis";
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -28,31 +31,53 @@ function RegisterForm() {
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
+     
+          <TextField
+           variant="standard"
+           id="standard-basic"
+           label="Username"
             type="text"
             name="username"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
+        
       </div>
       <div>
-        <label htmlFor="password">
-          Password:
-          <input
+          <TextField
+          variant="standard"
+          id="standard-basic"
+          label="Password"
             type="password"
             name="password"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+          <br />
+          <br />
+          <br />
+      <Button
+          onClick={registerUser}
+          variant="contained"
+          sx={{
+            borderRadius: 100,
+            background: "#95ca84",
+            hoverColor: "white",
+            "&:hover": {
+              backgroundColor: "#638359",
+              color: "white",
+            },
+          }}
+          startIcon={<SportsTennisIcon />}
+          color="primary"
+        >
+          Login
+        </Button>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        
       </div>
     </form>
   );

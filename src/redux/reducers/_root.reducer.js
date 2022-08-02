@@ -19,7 +19,8 @@ const rootReducer = combineReducers({
   geolocation,
   address,
   pins,
-  id// will have an id and username if someone is logged in
+  id,
+
 });
 
 export default rootReducer;

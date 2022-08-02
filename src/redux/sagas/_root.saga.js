@@ -24,6 +24,6 @@ export default function* rootSaga() {
     profileSaga(),
     geolocationSaga(),
     reviewSaga(),
-    ratingSaga()
+    ratingSaga(),
   ]);
 }

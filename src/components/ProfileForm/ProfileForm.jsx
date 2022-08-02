@@ -31,7 +31,7 @@ function ProfileForm() {
         user_id: user.id
       },
     });
-    history.push('/profile')
+    history.push('/profile/:id')
   }; // end makeProfile
 
   return (

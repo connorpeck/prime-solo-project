@@ -5,6 +5,7 @@ import './LoginForm.css';
 // import LoginIcon from '@mui/icons-material/Login';
 import Button from "@mui/material/Button";
 import SportsTennisIcon from "@mui/icons-material/SportsTennis";
+import TextField from '@mui/material/TextField';
 
 
 function LoginForm() {
@@ -39,30 +40,32 @@ function LoginForm() {
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
-          <input
+          <TextField
+          variant="standard"
+          id="standard-basic"
             type="text"
-            name="username"
+            label="Username"
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
       </div>
       <div>
-        <label htmlFor="password">
-          Password:
-          <input
+          <TextField
+          variant="standard"
+          id="standard-basic"
+            type="text"
+            label="Password"
             type="password"
             name="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
       </div>
       <div>
+        <br />
+        <br />
         <Button
           onClick={login}
           variant="contained"

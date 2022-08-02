@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const profileRouter = require('./routes/profile.router');
 const geolocationRouter = require('./routes/geolocation.router');
 const ratingRouter = require('./routes/rating.router');
+const allPinsRouter = require('./routes/allPins.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/profile', profileRouter);
+app.use('/api/allPins', allPinsRouter);
 // app.use('/api/id', profileRouter);
 app.use('/api/geolocation', geolocationRouter);
 app.use('/api/geolocation/delete', geolocationRouter);
