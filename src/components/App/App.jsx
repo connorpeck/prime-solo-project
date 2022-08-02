@@ -22,6 +22,7 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import Profile from "../Profile/Profile";
 import Maps from "../Maps/Maps";
 import AddCourt from "../AddCourt/AddCourt";
+import AllPinsMap from "../AllPinsMap/AllPinsMap";
 import "./App.css";
 
 function App() {
@@ -53,9 +54,9 @@ function App() {
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/maps"
+            path="/allPins"
           >
-            <Maps />
+            <AllPinsMap />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.

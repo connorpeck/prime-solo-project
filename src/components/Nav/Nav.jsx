@@ -26,8 +26,8 @@ function Nav() {
             </Link>
           ),
           (
-            <Link className="navLink" to="/maps">
-              Maps
+            <Link className="navLink" to="/allPins">
+              Tennis Courts
             </Link>
           ))}
 
