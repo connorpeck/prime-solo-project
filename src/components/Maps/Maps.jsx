@@ -166,7 +166,7 @@ function Maps() {
 
   const { isLoaded } = useJsApiLoader({
     id: "72d068a3c1025ca3",
-    // googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
   return isLoaded ? (
